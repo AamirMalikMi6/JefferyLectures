@@ -20,13 +20,10 @@ class Container{
             throw new \Exception('No such key');
         }
 
-
             $resolver = $this->bindings[$key];
 
             return call_user_func($resolver);
 
-
     }
-
 
 }
