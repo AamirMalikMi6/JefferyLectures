@@ -11,20 +11,20 @@ $email = $_POST['email'];
 $password = $_POST['password'];
 
 // validate the form inputs
-$errors = [];
-if (!Validator::email($email)) {
-    $errors['email'] = 'Please enter a valid email';
-}
+// $errors = [];
+// if (!Validator::email($email)) {
+//     $errors['email'] = 'Please enter a valid email';
+// }
 
-if (!Validator::string($password)) {
-    $errors['password'] = 'Please enter a valid password';
-}
+// if (!Validator::string($password)) {
+//     $errors['password'] = 'Please enter a valid password';
+// }
 
-if (!empty($errors)) {
-    return view('sessions/create.view.php', [
-        'errors' => $errors
-    ]);
-}
+// if (!empty($errors)) {
+//     return view('sessions/create.view.php', [
+//         'errors' => $errors
+//     ]);
+// }
 // login users if creditals is matched
 $user = $db->query('SELECT * from users where email =:email', [
     'email' => $email
