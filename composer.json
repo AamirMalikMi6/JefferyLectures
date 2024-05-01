@@ -1,0 +1,19 @@
+{
+    "name": "javadev/www",
+    "authors": [
+        {
+            "name": "AamirMalikMi6",
+            "email": "m.aamir.malik.mi6@gmail.com"
+        }
+    ],
+    "require": {
+        "illuminate/collections": "^10.48"
+    },
+
+    "autoload": {
+        "psr-4": {
+            "Core\\":"Core/",
+            "Http\\":"Http/"
+        }
+    }
+}

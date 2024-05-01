@@ -5,7 +5,8 @@ return [
         'host' => 'localhost',
         'port' => 3306,
         'dbname' => 'jeffery',
-        'charset' => 'utf8mb4',
-    ]
+        'charset' => 'utf8mb4'
+    ],
 
+    //
 ];

@@ -2,10 +2,8 @@
 
 namespace Core;
 
-use Core\Middleware\Auth;
-
+use Core\Middleware\Authenticated;
 use Core\Middleware\Guest;
-
 use Core\Middleware\Middleware;
 
 class Router
@@ -49,8 +47,8 @@ class Router
         return $this->add('PUT', $uri, $controller);
     }
 
-    public function only($key){
-
+    public function only($key)
+    {
         $this->routes[array_key_last($this->routes)]['middleware'] = $key;
 
         return $this;
@@ -60,25 +58,17 @@ class Router
     {
         foreach ($this->routes as $route) {
             if ($route['uri'] === $uri && $route['method'] === strtoupper($method)) {
-
-                // apply the middleware
                 Middleware::resolve($route['middleware']);
-
-
-                // if($route['middleware'] == 'guest'){
-                //     (new Guest)->handle();
-
-                //     }
-                //     if($route['middleware'] == 'auth'){
-                //         (new Auth)->handle();
-    
-                //         }
 
                 return require base_path('Http/controllers/' . $route['controller']);
             }
         }
 
         $this->abort();
+    }
+
+    public function previousUrl(){
+        return $_SERVER['HTTP_REFERER'];
     }
 
     protected function abort($code = 404)
@@ -90,34 +80,3 @@ class Router
         die();
     }
 }
-
-// $routes = require base_path('routes.php');
-
-
-// // die();
-// // dd($uri);
-
-
-
-// function routeToController($uri, $routes) {
-//     if (array_key_exists($uri, $routes)) {
-//         require base_path($routes[$uri]);
-//     } else {
-//         abort();
-//     }
-// }
-
-// // if(array_key_exists($uri, $routes)) {
-// //     require $routes[$uri];
-// // }
-
-// function abort($code = 404) {
-//     http_response_code($code);
-
-//     require base_path("views/{$code}.php");
-
-//     die();
-// }
-// // echo $_SERVER['REQUEST_URI'];
-// $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
-// routeToController($uri, $routes);

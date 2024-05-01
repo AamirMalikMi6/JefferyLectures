@@ -1,14 +1,5 @@
 <?php
 
-// return [
-//     '/' => 'index.php',
-//     '/about' => 'about.php',
-//     '/notes' => 'notes/index.php',
-//     '/note' => 'notes/show.php',
-//     '/notes/create' => 'notes/create.php',
-//     '/contact' => 'contact.php',
-// ];
-
 $router->get('/', 'index.php');
 $router->get('/about', 'about.php');
 $router->get('/contact', 'contact.php');
@@ -26,7 +17,6 @@ $router->post('/notes', 'notes/store.php');
 $router->get('/register', 'registration/create.php')->only('guest');
 $router->post('/register', 'registration/store.php')->only('guest');
 
-$router->get('/login', 'sessions/create.php')->only('guest');
-$router->post('/sessions', 'sessions/store.php')->only('guest');
-$router->delete('/sessions', 'sessions/destroy.php')->only('auth');
-
+$router->get('/login', 'session/create.php')->only('guest');
+$router->post('/session', 'session/store.php')->only('guest');
+$router->delete('/session', 'session/destroy.php')->only('auth');
